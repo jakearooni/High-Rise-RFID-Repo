@@ -1,0 +1,56 @@
+#Special Packages used
+# RMariaDb
+# odbc
+# RMySQL
+# DBI
+
+#db is naively called buildingdatabase.
+buildingdatabase <- dbConnect(MariaDB(), user = ' ', password = ' ', dbname = ' ', host = ' ')
+
+
+# comparing current code iteration to Master code
+# this is a fucntion at its most basic. 
+f <- function() {
+  x <- 1
+  y <- 2
+  c(x, y)
+}
+f()
+
+
+
+# Connection check. This is a simple function that produces some basic information when run. 
+# The "db = buildingdatabase" spcifies that "connect.check" will automatically put in buildingdatabase
+# if nothing is specified in the connect.check function when called upon later.
+connect.check <- function(db = buildingdatabase)
+{
+  dbListTables(db)
+  # table name
+  print(dbListTables(db))
+  # summarizes everything about the db
+  print(summary(db))
+  #geeting some more details
+  dbGetInfo(db, "rfid")
+}
+connect.check()
+
+
+#connection check. This works. The db is the variable you can call upon. Simplified function of the above fucntion.
+test1 <- function(db = buildingdatabase)
+{
+
+  dbGetInfo(db, "rfid")
+}
+
+test1()
+
+
+
+#If statements, the syntax. This works just fine
+x <- 4
+
+if (x == 4) {
+  print("excellent you have completed my task")
+} else {
+  print("screw you! You're some kind of mongoloid")
+}
